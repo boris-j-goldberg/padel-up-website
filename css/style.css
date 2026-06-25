@@ -1,0 +1,461 @@
+/* Padel-Up Static Site Styles
+   Clean, modern, mobile-friendly design inspired by the app icon and mobile app.
+   Keep this file self-contained and easy to copy into Google Sites or host statically.
+*/
+
+:root {
+  /* Branding matched to the app icon:
+     - Pale green background (like the court with white lines)
+     - Emerald green for primary actions
+     - Bold blue accents (from icon graphics)
+  */
+  --primary: #059669;
+  --primary-light: #10b981;
+  --primary-dark: #047857;
+
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+
+  /* Pale green court-like background */
+  --bg: #f0f7f4;
+  --bg-alt: #ffffff;
+
+  /* Bold blue from the icon */
+  --accent-blue: #1e40af;
+  --accent-blue-light: #3b82f6;
+
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #d1e7e0;
+
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header / Nav */
+.site-header {
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.nav-cta {
+  background: var(--primary);
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nav-cta:hover {
+  background: var(--primary-dark);
+  text-decoration: none;
+}
+
+/* Hero */
+.hero {
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 24px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: var(--bg-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: #f1f5f9;
+  text-decoration: none;
+}
+
+/* Bold blue variant to match icon graphics */
+.btn-blue {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.btn-blue:hover {
+  background: #1e3a8a;
+  text-decoration: none;
+}
+
+/* Sections */
+.section {
+  padding: 40px 0;
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+/* Sections that should feel like the pale green court background */
+.section-pale {
+  background: #e8f5e9;
+  border-top: 1px solid #d1e7e0;
+  border-bottom: 1px solid #d1e7e0;
+}
+
+.card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+}
+
+/* Features / How it works */
+.feature {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.feature:last-child {
+  margin-bottom: 0;
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: #ecfdf5;
+  color: var(--primary);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.feature h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Visual / Media */
+.media-placeholder {
+  background: #f1f5f9;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.media-placeholder video,
+.media-placeholder img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Store badges */
+.store-badges {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.store-badge {
+  height: 44px;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--text);
+  color: #cbd5e1;
+  padding: 32px 0;
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: #94a3b8;
+}
+
+.site-footer a:hover {
+  color: white;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+  }
+}
+
+/* Privacy / Legal pages */
+.legal-content {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-content h1,
+.legal-content h2,
+.legal-content h3 {
+  color: var(--text);
+}
+
+.legal-content p,
+.legal-content li {
+  color: var(--text-muted);
+}
+
+/* Simple table of contents for long pages */
+.toc {
+  background: #f8fafc;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.toc ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+/* ===== Screenshot zoom + Lightbox (for How it Works) ===== */
+.screenshot {
+  cursor: zoom-in;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  display: block;
+}
+
+.screenshot:hover {
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+  transform: translateY(-1px);
+}
+
+/* Lightbox modal */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 94vw;
+  max-height: 92vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  background: #fff;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  font-size: 44px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+}
+
+.lightbox .close:hover {
+  color: #cbd5e1;
+}
+
+/* Getting started 3-column layout (matching reference screenshot) */
+.gs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .gs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gs-col {
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.gs-col h3 {
+  margin: 0 0 3px;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.gs-col p {
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.gs-shots {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gs-shots .screenshot {
+  max-width: 48%;
+  max-height: 155px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
