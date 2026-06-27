@@ -39,9 +39,10 @@ Primary colors (inspired by app + padel court):
 ## How to preview locally
 Open any .html file directly in a browser, or run a simple server:
 ```
-cd web-site
-npx serve .
+npx serve . -p 8080
 ```
+
+Or on Windows just double-click `scripts\preview.cmd` (it forces the same port).
 
 ## Deployment (GitHub Pages + GoDaddy)
 
@@ -55,9 +56,18 @@ See the dedicated guide:
 
 ### Quick local preview
 ```bash
-cd web-site
-npx serve .
+npx serve . -p 8080
 ```
+or double-click `scripts\preview.cmd` on Windows.
+
+## Site configuration (version, future shared values)
+
+- **Version** shown in every page footer comes from `js/config.js` (`window.PADEL_CONFIG.version`).
+- To change the displayed version: edit only `js/config.js`.
+- For other cross-page values in the future (emails, store URLs, feature flags, etc.), add them in the same `js/config.js` object.
+- The local dev server port lives at the top of `scripts/preview.cmd` (and is referenced from docs).
+
+This keeps duplication to zero for parameters that must be consistent.
 
 ### Important
 This folder will be copied into a **dedicated Git repository** for the website (recommended for clean GitHub Pages setup). The main app repo will only keep a reference.

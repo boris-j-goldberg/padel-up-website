@@ -21,13 +21,14 @@ This is the first version being put into production. Further polish will happen 
 
 ```powershell
 # from repo root
-cd web-site
-npx serve .
+npx serve . -p 8080
 # or
 python -m http.server 8080
 ```
 
 Then visit http://localhost:8080
+
+The canonical port for local previews is documented in `scripts/preview.cmd` (top of file) and this guide.
 
 ## Adding visuals (screenshots & clips)
 1. Copy relevant files from your Dropbox:

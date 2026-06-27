@@ -1,0 +1,28 @@
+Padel-Up is a matching application for organizing padel games. It does not book courts; instead, it helps players find suitable partners, dates, and nearby clubs.
+////
+
+Padel-Up is a matching application for organizing padel games.
+It does not book courts; instead, it helps players find suitable partners, dates, and nearby clubs.
+
+During sign-up, players define their current location and a search radius for nearby clubs. The location can be updated at any time. After setting a location, the user selects one or more clubs where the application will search for matching games.
+
+Users can either create a game (if they already have a court booked) or a request to express their intention to play.
+
+The game organizer manages the game details and player list. Only the organizer can modify or cancel a game. Other players can join or leave games but cannot change game details.
+
+///
+Padel, matching, locations, courts, players
+///
+https://www.padel-up.net/support
+
+https://www.padel-up.net/privacy
+
+////
+support@padel-up.net
+123456
+
+
+https://play.google.com/store/apps/details?id=com.anonymous.padelup
+https://apps.apple.com/us/app/padel-up/id6759841735
+
+ 

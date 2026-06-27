@@ -318,6 +318,12 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.site-version {
+  opacity: 0.5;
+  font-size: 0.75rem;
+  margin-left: 0.1em;
+}
+
 @media (max-width: 640px) {
   .footer-inner {
     flex-direction: column;
