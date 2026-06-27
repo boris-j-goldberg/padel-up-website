@@ -1,19 +1,23 @@
 /**
  * Padel-Up Website — Central Configuration
  *
- * This is the single source of truth for values that need to appear
- * across multiple pages (version, contact info, future settings, etc.).
+ * Single source of truth for values shown on multiple pages.
  *
- * Usage in HTML/JS:
- *   const cfg = window.PADEL_CONFIG;
- *   console.log(cfg.version);
+ * Version here is displayed in every page footer.
+ * Use semver (major.minor.patch). The UI adds the "v" prefix automatically.
  *
- * For future parameters, add them here and consume via JS or a small
- * initializer in site.js. Keep this file dependency-free.
+ * Bump it with:
+ *   npm run bump patch
+ *   npm run bump minor
+ *   npm run bump major
+ *
+ * To also commit + create a git tag (site-vX.Y.Z):
+ *   npm run bump patch -- --commit
+ *
+ * For future cross-page parameters, add them to this object.
  */
 window.PADEL_CONFIG = {
-  // Shown in page footers. Use a plain number; the UI adds the "v" prefix.
-  version: "2",
+  version: "3.0.0",
 
   // Add future shared values below as needed.
   // Examples:

@@ -1,0 +1,10 @@
+{
+  "name": "padel-up-website",
+  "private": true,
+  "version": "3.0.0",
+  "description": "Padel-Up static marketing site",
+  "scripts": {
+    "preview": "npx serve . -p 8080",
+    "bump": "node scripts/bump-version.js"
+  }
+}
