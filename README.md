@@ -62,8 +62,29 @@ or double-click `scripts\preview.cmd` on Windows.
 
 ## Site configuration (version, future shared values)
 
-- **Version** shown in every page footer comes from `js/config.js` (`window.PADEL_CONFIG.version`).
-- To change the displayed version: edit only `js/config.js`.
+- **Version** shown in every page footer comes from **one place only**: `js/config.js` (`window.PADEL_CONFIG.version`).
+- Use semver (e.g. `2.1.0`). The UI shows it as `v2.1.0`.
+- Print the current version:
+
+  ```bash
+  npm run version
+  ```
+
+- Bump the version (updates only `js/config.js`):
+
+  ```bash
+  npm run bump patch     # 2.0.0 → 2.0.1
+  npm run bump minor     # 2.0.1 → 2.1.0
+  npm run bump major
+  npm run bump 2.3.0     # set explicit version
+  ```
+
+- To also create a git commit + annotated tag (`site-vX.Y.Z`):
+
+  ```bash
+  npm run bump patch -- --commit
+  ```
+
 - For other cross-page values in the future (emails, store URLs, feature flags, etc.), add them in the same `js/config.js` object.
 - The local dev server port lives at the top of `scripts/preview.cmd` (and is referenced from docs).
 
