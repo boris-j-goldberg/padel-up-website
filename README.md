@@ -85,6 +85,10 @@ or double-click `scripts\preview.cmd` on Windows.
   npm run bump patch -- --commit
   ```
 
+- Version bumps also rewrite the asset URLs (`css/style.css?v=...`, `js/config.js?v=...`, etc.).
+  This is the main mechanism for busting browser + CDN caches on GitHub Pages.
+  After a deploy you will often still need one hard refresh (Ctrl/Cmd + Shift + R) to get the updated HTML itself.
+
 - For other cross-page values in the future (emails, store URLs, feature flags, etc.), add them in the same `js/config.js` object.
 - The local dev server port lives at the top of `scripts/preview.cmd` (and is referenced from docs).
 

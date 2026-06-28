@@ -36,7 +36,12 @@ Use this checklist every time you update the public website.
 ## Verify in production
 
 - Test https://www.padel-up.net
-- Hard refresh
+- **Hard refresh** (important because of browser + CDN caching):
+  - Windows/Linux: Ctrl + Shift + R
+  - Mac: Cmd + Shift + R
+  - Or open DevTools (F12) → Network tab → check "Disable cache", then reload
+- Bumping the version (`npm run bump ...`) automatically adds `?v=NEW` to CSS/JS URLs.
+  This makes most updates visible without a hard refresh after the first load.
 - All links, videos, lightbox work
 
 ## After deployment (if URLs changed)

@@ -75,14 +75,52 @@ function updateConfigFile(currentVersion, newVersion) {
   write(CONFIG_PATH, src);
 }
 
+/**
+ * Update ?v=... cache buster on the main assets in all pages.
+ * This forces browsers (and CDNs) to fetch fresh CSS/JS when the version changes.
+ */
+function updateHtmlAssetVersions(newVersion) {
+  const htmlFiles = [
+    path.join(ROOT, 'index.html'),
+    path.join(ROOT, 'how-it-works.html'),
+    path.join(ROOT, 'privacy.html'),
+    path.join(ROOT, 'support.html'),
+  ];
+
+  // Matches href="css/style.css" or href="css/style.css?v=anything"
+  // Same for the two JS files. We preserve the rest of the tag.
+  const replacements = [
+    { re: /(href="css\/style\.css)(?:\?v=[^"]*)?(")/g, repl: `$1?v=${newVersion}$2` },
+    { re: /(src="js\/config\.js)(?:\?v=[^"]*)?(")/g,   repl: `$1?v=${newVersion}$2` },
+    { re: /(src="js\/site\.js)(?:\?v=[^"]*)?(")/g,     repl: `$1?v=${newVersion}$2` },
+  ];
+
+  for (const file of htmlFiles) {
+    let content = read(file);
+    let changed = false;
+
+    for (const { re, repl } of replacements) {
+      if (re.test(content)) {
+        content = content.replace(re, repl);
+        changed = true;
+      }
+    }
+
+    if (changed) {
+      write(file, content);
+    }
+  }
+}
+
 function runGit(newVersion, doCommit) {
   if (!doCommit) return;
 
   try {
-    const status = execSync('git status --porcelain js/config.js', { encoding: 'utf8' }).trim();
+    const files = 'js/config.js index.html how-it-works.html privacy.html support.html';
+    const status = execSync(`git status --porcelain ${files}`, { encoding: 'utf8' }).trim();
     if (status) {
       console.log('\nStaging changes...');
-      execSync('git add js/config.js', { stdio: 'inherit' });
+      execSync(`git add ${files}`, { stdio: 'inherit' });
 
       const msg = `chore(site): bump version to ${newVersion}`;
       execSync(`git commit -m "${msg}"`, { stdio: 'inherit' });
@@ -159,14 +197,15 @@ function main() {
   }
 
   updateConfigFile(current, newVersion);
+  updateHtmlAssetVersions(newVersion);
 
-  console.log(`\nUpdated js/config.js to ${newVersion}`);
+  console.log(`\nUpdated js/config.js and page asset URLs to ${newVersion}`);
 
   runGit(newVersion, doCommit);
 
   if (!doCommit) {
     console.log('\nNext steps (optional):');
-    console.log(`  git add js/config.js`);
+    console.log(`  git add js/config.js index.html how-it-works.html privacy.html support.html`);
     console.log(`  git commit -m "chore(site): bump version to ${newVersion}"`);
     console.log(`  git tag -a site-v${newVersion} -m "Site version ${newVersion}"`);
   }
