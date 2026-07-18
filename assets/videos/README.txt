@@ -10,3 +10,7 @@ Tips for future clips:
 - Consider adding a 1-2s title frame or use poster attribute on <video>
 
 For Google Sites hosting later: you will likely need to upload these (or compressed versions) to YouTube/Vimeo and switch to iframe embeds, because direct large video hosting on Google Sites is limited.
+
+
+https://www.youtube.com/watch?v=FGoiKQTnR0w
+https://www.youtube.com/watch?v=8uG_DVUT0IA

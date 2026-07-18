@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How it Works — Padel-Up</title>
   <meta name="description" content="See exactly how Padel-Up helps you find padel partners, set your clubs, create games, manage players, and get consent before playing.">
-  <link rel="stylesheet" href="css/style.css?v=1.1.6">
+  <link rel="stylesheet" href="css/style.css?v=1.1.7">
   <link rel="icon" href="assets/images/padel_up_icon_192.png">
 </head>
 <body>
@@ -40,17 +40,26 @@
     <!-- Videos - moved near top as requested -->
     <section id="videos" class="section container" style="padding-top:8px; padding-bottom:16px;">
       <h2 style="margin-bottom:8px; text-align:center;">Watch the videos</h2>
-      <div class="grid-2">
-        <div class="card">
-          <h3 style="margin-top:0; font-size:1rem;">Sign in + Onboarding</h3>
-          <video src="assets/videos/signup+onboarding.mp4" controls style="width:100%; border-radius:6px; background:#000;"></video>
-          <p style="font-size:0.8rem; margin:6px 0 0; color:#64748b;">Signing in, choosing location and clubs.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin-top:0; font-size:1rem;">Creating &amp; editing games</h3>
-          <video src="assets/videos/new_game.mp4" controls style="width:100%; border-radius:6px; background:#000;"></video>
-          <p style="font-size:0.8rem; margin:6px 0 0; color:#64748b;">Organizer creates and manages a game.</p>
-        </div>
+      <div class="video-grid">
+        <article class="card video-card">
+          <h3>Sign in + Onboarding</h3>
+          <video src="assets/videos/signup+onboarding.mp4" controls></video>
+          <p>Signing in, choosing location and clubs.</p>
+        </article>
+        <article class="card video-card">
+          <h3>Creating &amp; editing games</h3>
+          <video src="assets/videos/new_game.mp4" controls></video>
+          <p>Organizer creates and manages a game.</p>
+        </article>
+        <article class="card video-card">
+          <h3>Finding games from recommendations</h3>
+          <iframe
+            src="https://www.youtube.com/embed/ax1nxmxo_Dc"
+            title="Finding games from generated recommendations in Padel-Up"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <p>Player reviews generated recommendations and accepts a matching game.</p>
+        </article>
       </div>
     </section>
 
@@ -216,7 +225,7 @@
     </div>
   </footer>
 
-  <script src="js/config.js?v=1.1.6"></script>
-  <script src="js/site.js?v=1.1.6"></script>
+  <script src="js/config.js?v=1.1.7"></script>
+  <script src="js/site.js?v=1.1.7"></script>
 </body>
 </html>
