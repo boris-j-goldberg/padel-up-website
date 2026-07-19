@@ -83,6 +83,7 @@ function updateHtmlAssetVersions(newVersion) {
   const htmlFiles = [
     path.join(ROOT, 'index.html'),
     path.join(ROOT, 'how-it-works.html'),
+    path.join(ROOT, 'qa.html'),
     path.join(ROOT, 'privacy.html'),
     path.join(ROOT, 'support.html'),
   ];
@@ -93,6 +94,7 @@ function updateHtmlAssetVersions(newVersion) {
     { re: /(href="css\/style\.css)(?:\?v=[^"]*)?(")/g, repl: `$1?v=${newVersion}$2` },
     { re: /(src="js\/config\.js)(?:\?v=[^"]*)?(")/g,   repl: `$1?v=${newVersion}$2` },
     { re: /(src="js\/site\.js)(?:\?v=[^"]*)?(")/g,     repl: `$1?v=${newVersion}$2` },
+    { re: /(src="js\/qa\.js)(?:\?v=[^"]*)?(")/g,       repl: `$1?v=${newVersion}$2` },
   ];
 
   for (const file of htmlFiles) {
@@ -116,7 +118,7 @@ function runGit(newVersion, doCommit) {
   if (!doCommit) return;
 
   try {
-    const files = 'js/config.js index.html how-it-works.html privacy.html support.html';
+    const files = 'js/config.js index.html how-it-works.html qa.html privacy.html support.html';
     const status = execSync(`git status --porcelain ${files}`, { encoding: 'utf8' }).trim();
     if (status) {
       console.log('\nStaging changes...');
@@ -205,7 +207,7 @@ function main() {
 
   if (!doCommit) {
     console.log('\nNext steps (optional):');
-    console.log(`  git add js/config.js index.html how-it-works.html privacy.html support.html`);
+    console.log(`  git add js/config.js index.html how-it-works.html qa.html privacy.html support.html`);
     console.log(`  git commit -m "chore(site): bump version to ${newVersion}"`);
     console.log(`  git tag -a site-v${newVersion} -m "Site version ${newVersion}"`);
   }
