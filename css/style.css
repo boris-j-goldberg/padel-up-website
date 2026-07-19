@@ -407,6 +407,147 @@ a:hover {
   padding-left: 20px;
 }
 
+/* Q&A page */
+.qa-page {
+  max-width: 900px;
+}
+
+.qa-hero {
+  margin: 0 auto 28px;
+  max-width: 720px;
+  text-align: center;
+}
+
+.qa-hero h1 {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+
+.qa-hero p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.qa-content {
+  padding: 28px;
+}
+
+.qa-content-header {
+  align-items: baseline;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+}
+
+.qa-content-header h2 {
+  margin-bottom: 0;
+}
+
+.qa-count {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.qa-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.qa-filter {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 8px 12px;
+}
+
+.qa-filter:hover,
+.qa-filter.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.qa-filter:focus-visible {
+  outline: 3px solid rgba(5, 150, 105, 0.28);
+  outline-offset: 2px;
+}
+
+.qa-list {
+  display: grid;
+  gap: 10px;
+}
+
+.qa-item {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0;
+}
+
+.qa-item summary {
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+  list-style-position: outside;
+  padding: 14px 16px;
+}
+
+.qa-item summary:hover {
+  color: var(--primary-dark);
+}
+
+.qa-item p {
+  color: var(--text-muted);
+  margin: 0;
+  padding: 0 16px 16px 34px;
+}
+
+.qa-status {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.qa-status-error {
+  color: #b91c1c;
+}
+
+@media (max-width: 640px) {
+  .qa-content,
+  .legal-content {
+    padding: 22px;
+  }
+
+  .qa-content-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .qa-filter {
+    font-size: 0.82rem;
+    padding: 7px 10px;
+  }
+
+  .qa-item p {
+    padding-left: 16px;
+  }
+}
+
 /* ===== Screenshot zoom + Lightbox (for How it Works) ===== */
 .screenshot {
   cursor: zoom-in;
