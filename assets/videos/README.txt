@@ -1,7 +1,13 @@
-Videos currently in use (wired into index.html):
+Videos currently in use (wired into how-it-works.html):
 
-- signup+onboarding.mp4   → Sign in, location setup, clubs selection, basic onboarding
-- new_game.mp4            → Creating a game and editing game details
+- new_game_creation.mp4                       -> Organizer creates a new game
+- find_and_join_existing_game.mp4             -> Player finds an existing game and asks to join
+- recommendation-to-request-organizer.mp4      -> Organizer receives and reviews a generated recommendation
+- closing_existing_game.mp4                   -> Game closes after the player list is confirmed
+
+Additional embedded clip:
+
+- https://www.youtube.com/watch?v=ax1nxmxo_Dc -> Player reviews generated recommendations and accepts a matching game
 
 Tips for future clips:
 - Keep 15-60s
@@ -12,5 +18,6 @@ Tips for future clips:
 For Google Sites hosting later: you will likely need to upload these (or compressed versions) to YouTube/Vimeo and switch to iframe embeds, because direct large video hosting on Google Sites is limited.
 
 
-https://www.youtube.com/watch?v=FGoiKQTnR0w
-https://www.youtube.com/watch?v=8uG_DVUT0IA
+Older reference links:
+- https://www.youtube.com/watch?v=FGoiKQTnR0w
+- https://www.youtube.com/watch?v=8uG_DVUT0IA

@@ -171,6 +171,11 @@
       "categories": ["recommendations", "filtering", "notifications"]
     },
     {
+      "question": "If a request organizer accepts a game invitation, do all request players need to consent again?",
+      "answer": "No. Confirmed request players are sent to the matching game as join requests. The game organizer must approve each player before they become confirmed in the game, but no extra consent step is required. Extra consent is only required when a game organizer directly adds a player or when important game details change.",
+      "categories": ["recommendations", "workflow", "organizer"]
+    },
+    {
       "question": "Do push notifications always arrive?",
       "answer": "In-app notifications are the reliable source. Native push notifications are attempted when available, but device delivery can depend on phone settings, tokens, and platform behavior.",
       "categories": ["notifications"]

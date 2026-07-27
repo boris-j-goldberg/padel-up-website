@@ -17,7 +17,7 @@
  * For future cross-page parameters, add them to this object.
  */
 window.PADEL_CONFIG = {
-  version: "1.1.10",
+  version: "1.1.11",
 
   // Add future shared values below as needed.
   // Examples:
