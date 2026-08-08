@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game invitation — Padel-Up</title>
+  <meta name="description" content="Open a shared padel game in the Padel-Up mobile app.">
+  <link rel="stylesheet" href="../css/style.css?v=1.1.14">
+  <link rel="icon" href="../assets/images/padel_up_icon_192.png">
+  <style>
+    .invite-page {
+      align-items: center;
+      display: flex;
+      min-height: calc(100vh - 170px);
+      padding: 32px 20px;
+    }
+
+    .invite-card {
+      margin: 0 auto;
+      max-width: 560px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .invite-icon {
+      border-radius: 18px;
+      height: 72px;
+      margin-bottom: 12px;
+      width: 72px;
+    }
+
+    .invite-card h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 0 0 10px;
+    }
+
+    .invite-message {
+      color: var(--text-muted);
+      margin: 0 auto 22px;
+      max-width: 430px;
+    }
+
+    .invite-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .invite-actions .btn {
+      width: 100%;
+    }
+
+    .invite-error {
+      color: #b91c1c;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/padel_up_icon_192.png" alt="Padel-Up icon" width="32" height="32">
+        <span>Padel-Up</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="invite-page">
+    <section class="card invite-card" aria-labelledby="invite-title">
+      <img
+        class="invite-icon"
+        src="../assets/images/padel_up_icon_192.png"
+        alt=""
+        width="72"
+        height="72"
+      >
+      <h1 id="invite-title">Game invitation received</h1>
+      <p id="invite-message" class="invite-message">
+        Open this shared game in the Padel-Up app.
+      </p>
+
+      <div class="invite-actions">
+        <a id="open-app" class="btn btn-primary" href="#" hidden>Open Padel-Up</a>
+        <a
+          class="btn btn-blue"
+          href="https://apps.apple.com/us/app/padel-up/id6759841735"
+          target="_blank"
+          rel="noopener"
+        >
+          Download on the App Store
+        </a>
+        <a
+          class="btn btn-secondary"
+          href="https://play.google.com/store/apps/details?id=com.anonymous.padelup"
+          target="_blank"
+          rel="noopener"
+        >
+          Get it on Google Play
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© Padel-Up. Matching players, not courts.</div>
+      <div><a href="../support.html">Support</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const positiveGameIdPattern = /^[1-9]\d*$/;
+      const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+      const parameters = new URLSearchParams(window.location.search);
+      const gameId = parameters.get('gameId') || '';
+      const sharedBy = parameters.get('sharedBy') || '';
+      const message = document.getElementById('invite-message');
+      const openAppLink = document.getElementById('open-app');
+
+      if (!positiveGameIdPattern.test(gameId) || !Number.isSafeInteger(Number(gameId))) {
+        message.textContent = 'This invitation link is invalid or incomplete.';
+        message.classList.add('invite-error');
+        return;
+      }
+
+      const appUrl = new URL('padelup:///invite');
+      appUrl.searchParams.set('gameId', gameId);
+      if (uuidPattern.test(sharedBy)) {
+        appUrl.searchParams.set('sharedBy', sharedBy);
+      }
+
+      message.textContent = `Open shared game #${gameId} in Padel-Up.`;
+      openAppLink.href = appUrl.toString();
+      openAppLink.hidden = false;
+    })();
+  </script>
+</body>
+</html>

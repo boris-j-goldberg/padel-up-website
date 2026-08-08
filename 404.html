@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — Padel-Up</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.14">
+  <link rel="icon" href="/assets/images/padel_up_icon_192.png">
+</head>
+<body>
+  <main class="section">
+    <section class="container">
+      <div class="card" style="margin: 40px auto; max-width: 560px; text-align: center;">
+        <h1>Page not found</h1>
+        <p id="not-found-message">The requested page does not exist.</p>
+        <a class="btn btn-primary" href="/">Return to Padel-Up</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const match = window.location.pathname.match(/^\/invite\/([1-9]\d*)\/?$/);
+      if (!match || !Number.isSafeInteger(Number(match[1]))) {
+        return;
+      }
+
+      const target = new URL('/invite/', window.location.origin);
+      target.searchParams.set('gameId', match[1]);
+
+      const sharedBy = new URLSearchParams(window.location.search).get('sharedBy') || '';
+      const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+      if (uuidPattern.test(sharedBy)) {
+        target.searchParams.set('sharedBy', sharedBy);
+      }
+
+      document.getElementById('not-found-message').textContent = 'Opening your game invitation...';
+      window.location.replace(target.toString());
+    })();
+  </script>
+</body>
+</html>
