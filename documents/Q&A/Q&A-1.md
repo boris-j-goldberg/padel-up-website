@@ -71,7 +71,7 @@ Users choose location preferences such as regions or specific clubs. A game matc
 Games can define a required player rating range. A player must fit the game’s rating requirements to join. Search filters also use overlap logic, so games are shown when their rating range overlaps the selected filter range.
 
 ##	Why can I see a game but not join it?
-Possible reasons include: the game is already closed, your rating does not match the game’s requirements, you are already involved, or another rule prevents joining.
+Possible reasons include: your rating does not match the game’s requirements, you are already involved, or another rule prevents joining.
 
 ##	How are conflicts resolved?
 Only real Games create time conflicts, because they represent booked sessions. Requests do not create conflicts. Before approval or consent, the app checks whether the player is already confirmed in an overlapping closed Game.
@@ -92,7 +92,7 @@ Yes. The organizer can convert a Request into a Game after details become concre
 If it already has 4 confirmed players, one location, one date, and valid time details, it can close automatically. Otherwise, players are asked to confirm consent again because the plan became more specific.
 
 ##	What are recommendations?
-Recommendations notify users when an open Game and an open Request appear compatible by date, time, rating, and location. They help organizers discover good matches without manually searching everything.
+Recommendations notify users when an open Game and an open Request appear compatible by date, time, rating, and location. They help players discover good matches without manually searching everything. Recommendations also simplify and accelerate games closing process.
 
 ##	Do push notifications always arrive?
 In-app notifications are the reliable source. Native push notifications are attempted when available, but device delivery can depend on phone settings, tokens, and platform behavior.

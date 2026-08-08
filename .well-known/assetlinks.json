@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.anonymous.padelup",
+      "sha256_cert_fingerprints": [
+        "AE:95:75:8D:AF:0D:48:67:51:AF:BF:98:82:AB:8E:A6:88:31:5D:14:F3:C1:74:51:BD:35:CE:0B:AD:A7:4C:0D"
+      ]
+    }
+  }
+]
