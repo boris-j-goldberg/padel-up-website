@@ -93,6 +93,7 @@
       overflow-wrap: anywhere;
       padding: 10px;
       text-align: left;
+      user-select: all;
     }
 
     .dialog-actions {
@@ -166,8 +167,6 @@
       <p id="dialog-message"></p>
       <code id="deep-link-target" class="deep-link-target"></code>
       <div class="dialog-actions">
-        <button id="copy-link" class="btn btn-secondary" type="button">Copy link</button>
-        <button id="try-anyway" class="btn btn-primary" type="button">Try anyway</button>
         <button id="close-dialog" class="btn btn-secondary" type="button">Close</button>
       </div>
     </div>
@@ -186,8 +185,6 @@
       const dialogTitle = document.getElementById('dialog-title');
       const dialogMessage = document.getElementById('dialog-message');
       const deepLinkTarget = document.getElementById('deep-link-target');
-      const copyLinkButton = document.getElementById('copy-link');
-      const tryAnywayButton = document.getElementById('try-anyway');
       const closeDialogButton = document.getElementById('close-dialog');
 
       if (!positiveGameIdPattern.test(gameId) || !Number.isSafeInteger(Number(gameId))) {
@@ -210,7 +207,6 @@
         dialogTitle.textContent = title;
         dialogMessage.textContent = explanation;
         deepLinkTarget.textContent = appUrl.toString();
-        copyLinkButton.textContent = 'Copy link';
         dialog.showModal();
       };
 
@@ -226,7 +222,7 @@
         if (!mobileUserAgent && !reportsMobile) {
           showOpenAppDialog(
             'Mobile app required',
-            'This button uses a mobile deep link. A desktop browser normally has no Padel-Up handler. Use a phone with Padel-Up installed, or select “Try anyway” for development testing.'
+            'This button uses a mobile deep link. A desktop browser has no Padel-Up handler. Use a phone with Padel-Up installed. The diagnostic deep link is shown below for development testing.'
           );
           return;
         }
@@ -246,24 +242,10 @@
           if (!pageWasHidden && !document.hidden) {
             showOpenAppDialog(
               'Padel-Up did not open',
-              'The app may not be installed, or this browser may have blocked the deep link. Install Padel-Up from the store and try again.'
+              'The app is not installed, or this browser could not open it. Install Padel-Up from the store. The diagnostic deep link is shown below for development testing.'
             );
           }
         }, 1800);
-      });
-
-      tryAnywayButton.addEventListener('click', () => {
-        dialog.close();
-        attemptToOpenApp();
-      });
-
-      copyLinkButton.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(appUrl.toString());
-          copyLinkButton.textContent = 'Copied';
-        } catch {
-          copyLinkButton.textContent = 'Copy unavailable';
-        }
       });
 
       closeDialogButton.addEventListener('click', () => dialog.close());
