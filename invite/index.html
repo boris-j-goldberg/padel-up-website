@@ -55,6 +55,56 @@
       color: #b91c1c;
       font-weight: 600;
     }
+
+    .open-app-dialog {
+      border: 0;
+      border-radius: var(--radius);
+      box-shadow: 0 16px 48px rgba(15, 23, 42, 0.28);
+      max-width: 500px;
+      padding: 0;
+      width: calc(100% - 32px);
+    }
+
+    .open-app-dialog::backdrop {
+      background: rgba(15, 23, 42, 0.58);
+    }
+
+    .dialog-content {
+      padding: 24px;
+    }
+
+    .dialog-content h2 {
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    .dialog-content p {
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+
+    .deep-link-target {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      margin-bottom: 18px;
+      overflow-wrap: anywhere;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .dialog-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .dialog-actions .btn {
+      padding: 10px 18px;
+    }
   </style>
 </head>
 <body>
@@ -110,6 +160,19 @@
     </div>
   </footer>
 
+  <dialog id="open-app-dialog" class="open-app-dialog">
+    <div class="dialog-content">
+      <h2 id="dialog-title">Unable to open Padel-Up</h2>
+      <p id="dialog-message"></p>
+      <code id="deep-link-target" class="deep-link-target"></code>
+      <div class="dialog-actions">
+        <button id="copy-link" class="btn btn-secondary" type="button">Copy link</button>
+        <button id="try-anyway" class="btn btn-primary" type="button">Try anyway</button>
+        <button id="close-dialog" class="btn btn-secondary" type="button">Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <script>
     (() => {
       const positiveGameIdPattern = /^[1-9]\d*$/;
@@ -119,6 +182,13 @@
       const sharedBy = parameters.get('sharedBy') || '';
       const message = document.getElementById('invite-message');
       const openAppLink = document.getElementById('open-app');
+      const dialog = document.getElementById('open-app-dialog');
+      const dialogTitle = document.getElementById('dialog-title');
+      const dialogMessage = document.getElementById('dialog-message');
+      const deepLinkTarget = document.getElementById('deep-link-target');
+      const copyLinkButton = document.getElementById('copy-link');
+      const tryAnywayButton = document.getElementById('try-anyway');
+      const closeDialogButton = document.getElementById('close-dialog');
 
       if (!positiveGameIdPattern.test(gameId) || !Number.isSafeInteger(Number(gameId))) {
         message.textContent = 'This invitation link is invalid or incomplete.';
@@ -135,6 +205,68 @@
       message.textContent = `Open shared game #${gameId} in Padel-Up.`;
       openAppLink.href = appUrl.toString();
       openAppLink.hidden = false;
+
+      const showOpenAppDialog = (title, explanation) => {
+        dialogTitle.textContent = title;
+        dialogMessage.textContent = explanation;
+        deepLinkTarget.textContent = appUrl.toString();
+        copyLinkButton.textContent = 'Copy link';
+        dialog.showModal();
+      };
+
+      const attemptToOpenApp = () => {
+        window.location.href = appUrl.toString();
+      };
+
+      openAppLink.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const mobileUserAgent = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const reportsMobile = navigator.userAgentData && navigator.userAgentData.mobile;
+        if (!mobileUserAgent && !reportsMobile) {
+          showOpenAppDialog(
+            'Mobile app required',
+            'This button uses a mobile deep link. A desktop browser normally has no Padel-Up handler. Use a phone with Padel-Up installed, or select “Try anyway” for development testing.'
+          );
+          return;
+        }
+
+        let pageWasHidden = false;
+        const markPageHidden = () => {
+          if (document.hidden) {
+            pageWasHidden = true;
+          }
+        };
+
+        document.addEventListener('visibilitychange', markPageHidden);
+        attemptToOpenApp();
+
+        window.setTimeout(() => {
+          document.removeEventListener('visibilitychange', markPageHidden);
+          if (!pageWasHidden && !document.hidden) {
+            showOpenAppDialog(
+              'Padel-Up did not open',
+              'The app may not be installed, or this browser may have blocked the deep link. Install Padel-Up from the store and try again.'
+            );
+          }
+        }, 1800);
+      });
+
+      tryAnywayButton.addEventListener('click', () => {
+        dialog.close();
+        attemptToOpenApp();
+      });
+
+      copyLinkButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(appUrl.toString());
+          copyLinkButton.textContent = 'Copied';
+        } catch {
+          copyLinkButton.textContent = 'Copy unavailable';
+        }
+      });
+
+      closeDialogButton.addEventListener('click', () => dialog.close());
     })();
   </script>
 </body>
