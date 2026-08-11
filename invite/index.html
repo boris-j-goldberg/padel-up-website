@@ -179,6 +179,8 @@
       const parameters = new URLSearchParams(window.location.search);
       const gameId = parameters.get('gameId') || '';
       const sharedBy = parameters.get('sharedBy') || '';
+      const sharedByName = parameters.get('sharedByName') || '';
+      const title = document.getElementById('invite-title');
       const message = document.getElementById('invite-message');
       const openAppLink = document.getElementById('open-app');
       const dialog = document.getElementById('open-app-dialog');
@@ -195,8 +197,23 @@
 
       const appUrl = new URL('padelup:///invite');
       appUrl.searchParams.set('gameId', gameId);
-      if (uuidPattern.test(sharedBy)) {
+      const validSharedBy = uuidPattern.test(sharedBy);
+      const normalizedSharerName = Array.from(sharedByName)
+        .filter((character) => {
+          const characterCode = character.charCodeAt(0);
+          return characterCode >= 32 && characterCode !== 127;
+        })
+        .join('')
+        .trim();
+      const validSharerName =
+        validSharedBy && normalizedSharerName.length > 0 && normalizedSharerName.length <= 80;
+
+      if (validSharedBy) {
         appUrl.searchParams.set('sharedBy', sharedBy);
+      }
+      if (validSharerName) {
+        appUrl.searchParams.set('sharedByName', normalizedSharerName);
+        title.textContent = `Invitation from ${normalizedSharerName}`;
       }
 
       message.textContent = `Open shared game #${gameId} in Padel-Up.`;
