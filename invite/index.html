@@ -244,25 +244,10 @@
           return;
         }
 
-        let pageWasHidden = false;
-        const markPageHidden = () => {
-          if (document.hidden) {
-            pageWasHidden = true;
-          }
-        };
-
-        document.addEventListener('visibilitychange', markPageHidden);
+        // Mobile browsers suspend and resume timers while switching apps, so
+        // timeout-based "did not open" detection produces false failures.
+        // Launch directly; if no handler exists, the store buttons remain visible.
         attemptToOpenApp();
-
-        window.setTimeout(() => {
-          document.removeEventListener('visibilitychange', markPageHidden);
-          if (!pageWasHidden && !document.hidden) {
-            showOpenAppDialog(
-              'Padel-Up did not open',
-              'The app is not installed, or this browser could not open it. Install Padel-Up from the store. The diagnostic deep link is shown below for development testing.'
-            );
-          }
-        }, 1800);
       });
 
       closeDialogButton.addEventListener('click', () => dialog.close());
