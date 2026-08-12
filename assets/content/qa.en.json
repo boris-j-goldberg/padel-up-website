@@ -1,10 +1,11 @@
 {
   "language": "en",
   "title": "Q&A",
-  "intro": "Answers to common questions about how Padel-Up works, including games, requests, approvals, consent, recommendations, filters, and notifications.",
+  "intro": "Answers to common questions about how Padel-Up works, including games, invitations, requests, approvals, consent, recommendations, filters, and notifications.",
   "categories": [
     { "id": "basics", "label": "Basics" },
     { "id": "onboarding", "label": "Onboarding" },
+    { "id": "invitations", "label": "Invitations" },
     { "id": "games-requests", "label": "Games & Requests" },
     { "id": "organizer", "label": "Organizer" },
     { "id": "workflow", "label": "Workflow" },
@@ -69,6 +70,11 @@
       "question": "How does joining a game work?",
       "answer": "A player requests to join. The request stays pending until the organizer approves it. Once approved, the player becomes confirmed unless additional consent is required.",
       "categories": ["workflow", "organizer"]
+    },
+    {
+      "question": "What happens if I open a game invitation while signed out?",
+      "answer": "The app asks you to sign in normally. For privacy and to keep account setup predictable, the invitation is not stored or resumed through sign-in or onboarding. After signing in, open the original invitation link again. If you were already signed in when opening the link, the app opens the invitation directly.",
+      "categories": ["invitations", "onboarding", "workflow"]
     },
     {
       "question": "Why does a player sometimes need to give consent?",
